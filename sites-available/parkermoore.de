@@ -1,0 +1,13 @@
+server {
+  listen 80;
+  server_name parkermoore.de;
+  root /var/www/parkermoore.de;
+  error_page 404 = /404.html;
+}
+
+server {
+  listen 80;
+  server_name www.parkermoore.de;
+  root /var/www/parkermoore.de;
+  error_page 404 = /404.html;
+}

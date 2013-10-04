@@ -1,0 +1,31 @@
+server { 
+	listen 80; 
+	server_name oceanography.parkr.me;
+	root /var/www/classes/oceanography; 
+	default_type text/html;
+	charset utf-8;
+
+	location = /favicon.ico { 
+		log_not_found off; 
+		access_log off; 
+	}
+
+	location = /robots.txt { 
+		allow all; 
+		log_not_found off; 
+		access_log off; 
+	}
+
+	location ~ \.ini$ {
+		deny all;
+		access_log off;
+		log_not_found off;
+	}
+
+	add_header Cache-Control "max-age=315360000"; 
+	# Mise ne cache des ressources statiques 
+	location ~* ^.+\.(jpg|jpeg|gif|css|png|js|xml)$ { 
+		expires 30d; 
+		access_log off; 
+	}
+}
