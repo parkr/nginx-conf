@@ -1,0 +1,19 @@
+server {
+	listen 80;
+	server_name tweets.parkr.me;
+	root /var/www/tweetz;
+
+	index  index.php;
+	client_max_body_size 25M;
+	default_type text/html;
+	charset utf-8;
+
+    include global/restrictions.conf;
+
+    # Additional rules go here.
+
+    # Only include one of the files below.
+    include global/wordpress.conf;
+    # include global/wordpress-ms-subdir.conf;
+    # include global/wordpress-ms-subdomain.conf;
+}

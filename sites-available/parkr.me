@@ -1,0 +1,15 @@
+server {
+  listen 80;
+  server_name parkr.me;
+  root /var/www/parkr.me/public;   # <--- be sure to point to 'public'!
+  passenger_enabled on;
+  error_log /var/www/parkr.me/log/error.log;
+}
+
+server {
+  listen 80;
+  server_name www.parkr.me;
+  root /var/www/parkr.me/public;   # <--- be sure to point to 'public'!
+  passenger_enabled on;
+  error_log /var/www/parkr.me/log/error.log;
+}

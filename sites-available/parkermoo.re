@@ -20,6 +20,9 @@ server {
 
     root /var/www/parkermoore.de;
     error_page 404 = /404.html;
+
+    #lua_need_request_body on;
+    #access_by_lua_file "/opt/nginx/etc/access.lua";
  
     # required: path to certificate and private key
     ssl_certificate /opt/nginx/ssl/unified.crt;
