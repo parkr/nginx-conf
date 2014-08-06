@@ -1,0 +1,8 @@
+server {
+  listen 80;
+  server_name travis-hook.parkr.me;
+  root /var/www/travis-hook/current/public;
+  passenger_enabled on;
+  error_log /var/www/travis-hook/shared/log/nginx.log;
+  # passenger_app_env development;
+}
