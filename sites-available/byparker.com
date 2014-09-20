@@ -40,11 +40,23 @@ server {
     listen 443 ssl;
     server_name byparker.com;
 
-    root /var/www/parkermoore.de;
+    root /var/www/byparker.com;
     error_page 404 = /404.html;
 
-    #lua_need_request_body on;
-    #access_by_lua_file "/opt/nginx/etc/access.lua";
+    ## All static files will be served directly.
+    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|svg|woff2)$ {
+        access_log off;
+        expires 30d;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        ## No need to bleed constant updates. Send the all shebang in one
+        ## fell swoop.
+        tcp_nodelay off;
+        ## Set the OS file cache.
+        open_file_cache max=3000 inactive=120s;
+        open_file_cache_valid 45s;
+        open_file_cache_min_uses 2;
+        open_file_cache_errors off;
+    }
 
     # required: path to certificate and private key
     ssl_certificate /etc/prosody/certs/byparker.com.ssl.crt;
