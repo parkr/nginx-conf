@@ -1,0 +1,1 @@
+/opt/nginx/conf/sites-available/gossip.parkermoo.re
