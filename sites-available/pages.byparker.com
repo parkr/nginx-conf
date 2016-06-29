@@ -1,21 +1,17 @@
 server {
   listen 80;
-  server_name gossip.parkermoo.re;
-
-  location / {
-    proxy_pass        http://localhost:7483;
-    proxy_set_header  X-Real-IP  $remote_addr;
-  }
+  server_name pages.byparker.com;
+  return 301 https://pages.byparker.com$request_uri;
 }
 
 server {
   listen 443 ssl http2;
-  server_name gossip.parkermoo.re;
+  server_name pages.byparker.com;
 
   # required: path to certificate and private key
-  ssl_certificate /etc/letsencrypt/live/gossip.parkermoo.re/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/gossip.parkermoo.re/privkey.pem;
-  ssl_trusted_certificate /etc/letsencrypt/live/gossip.parkermoo.re/chain.pem;
+  ssl_certificate /etc/letsencrypt/live/pages.byparker.com-0001/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/pages.byparker.com-0001/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/pages.byparker.com-0001/chain.pem;
   ssl_session_timeout 5m;
   ssl_session_cache shared:SSL:50m;
 
@@ -43,7 +39,7 @@ server {
   etag on;
 
   location / {
-    proxy_pass        http://localhost:7483;
+    proxy_pass        http://localhost:7523;
     proxy_set_header  X-Real-IP  $remote_addr;
   }
 

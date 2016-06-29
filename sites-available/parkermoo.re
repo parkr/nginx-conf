@@ -22,15 +22,15 @@ server {
     listen 443 ssl;
     server_name parkermoo.re;
 
-    root /var/www/parkermoore.de;
+    root /var/www/parkr/byparker.com;
     error_page 404 = /404.html;
 
     #lua_need_request_body on;
     #access_by_lua_file "/opt/nginx/etc/access.lua";
 
     # required: path to certificate and private key
-    ssl_certificate /opt/nginx/ssl/parkermoo.re/unified.crt;
-    ssl_certificate_key /opt/nginx/ssl/parkermoo.re/ssl.key;
+    ssl_certificate /etc/letsencrypt/live/parkermoo.re/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/parkermoo.re/privkey.pem;
 
     # optional: tell browsers to require SSL (warning: difficult to change your mind)
     add_header Strict-Transport-Security max-age=31536000;
@@ -44,7 +44,7 @@ server {
 
     # optional: turn on session resumption, using a 10 min cache shared across nginx processes
     # as recommended by http://nginx.org/en/docs/http/configuring_https_servers.html
-    ssl_session_cache   shared:SSL:10m;
+    ssl_session_cache   shared:SSL:52428800;
     ssl_session_timeout 10m;
     keepalive_timeout   70;
 }
