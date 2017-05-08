@@ -62,5 +62,8 @@ server {
     open_file_cache_errors off;
     add_header X-Konklone-Force-HTTPS TRUE;
     etag on;
+
+    proxy_pass        http://localhost:7483;
+    proxy_set_header  X-Real-IP  $remote_addr;
   }
 }

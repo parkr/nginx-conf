@@ -39,9 +39,10 @@ server {
   # e-tag for caching
   etag on;
 
-  root /var/www/chat-log-server/public;   # <--- be sure to point to 'public'!
-  passenger_enabled on;
-  error_log /var/www/chat-log-server/log/error.log;
+  location / {
+    proxy_pass        http://localhost:7483;
+    proxy_set_header  X-Real-IP  $remote_addr;
+  }
 
   ## All static files will be served directly.
   location ~* ^.+\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|svg|woff2)$ {
@@ -58,5 +59,8 @@ server {
     open_file_cache_errors off;
     add_header X-Konklone-Force-HTTPS TRUE;
     etag on;
+
+    proxy_pass        http://localhost:7483;
+    proxy_set_header  X-Real-IP  $remote_addr;
   }
 }
