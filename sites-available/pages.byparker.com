@@ -11,9 +11,9 @@ server {
   server_name pages.byparker.com;
 
   # required: path to certificate and private key
-  ssl_certificate /etc/letsencrypt/live/pages.byparker.com-0001/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/pages.byparker.com-0001/privkey.pem;
-  ssl_trusted_certificate /etc/letsencrypt/live/pages.byparker.com-0001/chain.pem;
+  ssl_certificate /etc/letsencrypt/live/pages.byparker.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/pages.byparker.com/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/pages.byparker.com/chain.pem;
   ssl_session_timeout 5m;
   ssl_session_cache shared:SSL:50m;
 
@@ -60,5 +60,7 @@ server {
     open_file_cache_errors off;
     add_header X-Konklone-Force-HTTPS TRUE;
     etag on;
+    proxy_pass        http://localhost:7523;
+    proxy_set_header  X-Real-IP  $remote_addr;
   }
 }
