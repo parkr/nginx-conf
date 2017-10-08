@@ -1,11 +1,13 @@
 server {
   listen 80;
+  listen [::]:80;
   server_name irc.parkermoo.re;
   return 301 https://irc.parkermoo.re$request_uri;
 }
 
 server {
   listen 443 ssl http2;
+  listen [::]:443 ssl http2;
   server_name irc.parkermoo.re;
 
   # required: path to certificate and private key

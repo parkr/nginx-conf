@@ -1,11 +1,13 @@
 server {
   listen 80;
+  listen [::]:80;
   server_name pages.byparker.com;
   return 301 https://pages.byparker.com$request_uri;
 }
 
 server {
   listen 443 ssl http2;
+  listen [::]:443 ssl http2;
   server_name pages.byparker.com;
 
   # required: path to certificate and private key

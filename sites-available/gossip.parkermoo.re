@@ -1,5 +1,6 @@
 server {
   listen 80;
+  listen [::]:80;
   server_name gossip.parkermoo.re;
 
   location / {
@@ -10,6 +11,7 @@ server {
 
 server {
   listen 443 ssl http2;
+  listen [::]:443 ssl http2;
   server_name gossip.parkermoo.re;
 
   # required: path to certificate and private key

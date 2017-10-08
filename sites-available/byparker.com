@@ -1,11 +1,13 @@
 server {
     listen 80;
+    listen [::]:80;
     server_name byparker.com;
     return 302 https://byparker.com$request_uri;
 }
 
 server {
     listen 80;
+    listen [::]:80;
     server_name www.byparker.com;
     return 302 https://byparker.com$request_uri;
 }
@@ -13,6 +15,7 @@ server {
 server {
     # 'http2' requires nginx 1.9.5+. If using older nginx, replace with 'spdy'.
     listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name www.byparker.com;
 
     # required: path to certificate and private key
@@ -49,6 +52,7 @@ server {
 server {
     # 'http2' requires nginx 1.9.5+. If using older nginx, replace with 'spdy'.
     listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name byparker.com;
 
     root /var/www/parkr/byparker.com;
