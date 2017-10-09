@@ -13,7 +13,14 @@ configs: static-with-www-byparker.com \
   proxy-7483-gossip.parkermoo.re \
   proxy-7523-pages.byparker.com \
   proxy-8291-radar.parkermakes.tools \
-  additives-byparker.com
+  additives-byparker.com \
+  mime-types
+
+mime-types: nginx-mimes-gen
+	nginx-mimes-gen > mime.types
+
+nginx-mimes-gen:
+	go get -u github.com/parkr/nginxconf/cmd/nginx-mimes-gen
 
 nginx-conf-gen:
 	go get -u github.com/parkr/nginxconf/cmd/nginx-conf-gen
