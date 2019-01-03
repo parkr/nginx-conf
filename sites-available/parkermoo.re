@@ -60,12 +60,12 @@ server {
     listen [::]:443 ssl http2;
     server_name parkermoo.re;
 
-    
+
     # Show me the files.
     root /var/www/parkr/parkermoo.re;
     error_page 404 = /404.html;
     etag on;
-    
+
 
     # optional: turn on session resumption, using a 10 min cache shared across nginx processes
     # as recommended by http://nginx.org/en/docs/http/configuring_https_servers.html
@@ -96,7 +96,7 @@ server {
     # Handle all requests.
     location / {
         try_files $uri $uri.html $uri/index.html index.html;
-        
+
     }
 
     ## All static files will be served with a bit more nuance.
@@ -107,7 +107,7 @@ server {
         add_header X-Konklone-Force-HTTPS TRUE;
         etag on;
 
-        
+
         ## No need to bleed constant updates. Send the all shebang in one
         ## fell swoop.
         tcp_nodelay off;
@@ -117,7 +117,7 @@ server {
         open_file_cache_valid 45s;
         open_file_cache_min_uses 2;
         open_file_cache_errors off;
-        
+
     }
 }
 

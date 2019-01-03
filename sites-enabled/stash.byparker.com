@@ -1,1 +1,0 @@
-/opt/nginx/conf/sites-available/stash.byparker.com
